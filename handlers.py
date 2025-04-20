@@ -39,7 +39,7 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         session = Session()
         user = session.query(User).filter_by(telegram_id=user_id).first()
         referrals = session.query(User).filter_by(referrer_id=user.telegram_id).count()
-        text = (f"Ваш ID: {user.telegram_id}'
+        text = f"Ваш ID: {user.telegram_id}'
 "
                 f"Баланс: {user.balance}
 "
