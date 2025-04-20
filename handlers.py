@@ -39,13 +39,12 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         session = Session()
         user = session.query(User).filter_by(telegram_id=user_id).first()
         referrals = session.query(User).filter_by(referrer_id=user.telegram_id).count()
-        text = f'Ваш ID: {user.telegram_id}'
-"
-                f"Баланс: {user.balance}
-"
-                f"Рефералов: {referrals}
-"
-                f"Ваша ссылка: /start {user.telegram_id}")
+    text = (
+        f"Ваш ID: {user.telegram_id}\n"
+        f"Баланс: {user.balance}\n"
+        f"Рефералов: {referrals}\n"
+        f"Ваша ссылка: /start {user.telegram_id}"
+    )
         await query.message.reply_text(text)
         session.close()
     elif query.data == "answer_ticket":
